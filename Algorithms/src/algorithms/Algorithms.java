@@ -12,6 +12,8 @@ public class Algorithms {
 
         Algorithms algos = new Algorithms();
         algos.fillArray();
+        algos.printArray();
+        System.out.println("-------------");
         algos.shellSort();
         algos.printArray();
     }
@@ -147,14 +149,30 @@ public class Algorithms {
         while (interval > 0) {
             for (outer = interval; outer < arraySize; outer++) {
                 temp = array[outer];
+                System.out.println("Copy " + array[outer] + " into temp" );
                 inner = outer;
+                System.out.println("Checking if " + array[inner-interval] + " in index " + (inner - interval) + " is bigger than " + temp );
                 while (inner > interval - 1 && array[inner - interval] >= temp) {
+                    System.out.println("In While Checking if " + array[inner-interval] + " in index " + (inner - interval) + " is bigger than " + temp );
+                    printArray();
+                    System.out.println();
+
                     array[inner] = array[inner - interval];
+                    System.out.println(array[inner - interval] + " moved to index " +inner);
                     inner -= interval;
+                    System.out.println("Interval is " + interval);
+                    System.out.println("outer = " + outer);
+                    System.out.println("temp = " + temp);
+                    System.out.println("inner = " + inner);
                 }
                 array[inner] = temp;
+                System.out.println(temp + " moved to index " +inner);
+                printArray();
+                System.out.println();
+                System.out.println("------------");
             }
             interval = (interval - 1) / 3;
+            System.out.println("New Interval is " + interval);
         }
     }
 }
