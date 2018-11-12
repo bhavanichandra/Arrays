@@ -14,7 +14,7 @@ public class Algorithms {
         algos.fillArray();
         algos.printArray();
         System.out.println("-------------");
-        algos.shellSort();
+        algos.quickSort(0,algos.arraySize-1);
         algos.printArray();
     }
 
@@ -174,5 +174,69 @@ public class Algorithms {
             interval = (interval - 1) / 3;
             System.out.println("New Interval is " + interval);
         }
+    }
+    public void partitioning(int pivot){
+        int leftPointer = -1;
+        int rightPointer = arraySize;
+
+        while (true){
+            while (leftPointer<arraySize-1 && array[++leftPointer]<pivot);
+            printArray();
+            System.out.println();
+            System.out.println(array[leftPointer] + " in index " + leftPointer + " is bigger then pivot vlaue "+pivot);
+            while (rightPointer > 0 && array[--rightPointer] > pivot);
+            printArray();
+            System.out.println();
+            System.out.println(array[rightPointer] + " in index " + rightPointer + " is smaller then pivot vlaue "+pivot);
+            printArray();
+            System.out.println();
+            if(leftPointer>=rightPointer){
+                break;
+            }else {
+                swapValues(leftPointer,rightPointer);
+                System.out.println(array[leftPointer] + " was swapped for " + array[rightPointer]);
+            }
+        }
+    }
+
+    public void quickSort(int left, int right){
+        if(right-left<=0){
+            return;
+        }
+        else {
+            int pivot = array[right];
+            System.out.println("value in right " + array[right] + " is made the pivot");
+            System.out.println("left = "+left + " right = " + right + " pivot = "+pivot+ " was sent to partitioned");
+            int pivotLocation = partitionArray(left,right,pivot);
+            System.out.println("value in right " + array[left] + " is made the pivot");
+            quickSort(left,pivotLocation-1);
+            quickSort(pivotLocation+1,right);
+        }
+    }
+    public int partitionArray(int left, int right, int pivot){
+
+        int leftPointer= left-1;
+        int rightPointer = right;
+        while (true){
+            while (array[++leftPointer]<pivot);
+            printArray();
+            System.out.println();
+            System.out.println(array[leftPointer] + " in index " + leftPointer + " is bigger then pivot vlaue "+pivot);
+            while (rightPointer > 0 && array[--rightPointer] > pivot);
+            printArray();
+            System.out.println();
+            System.out.println(array[rightPointer] + " in index " + rightPointer + " is smaller then pivot vlaue "+pivot);
+            printArray();
+            System.out.println();
+            if(leftPointer>=rightPointer){
+                System.out.println("left is >= right so start again");
+                break;
+            }else {
+                swapValues(leftPointer,rightPointer);
+                System.out.println(array[leftPointer] + " was swapped for " + array[rightPointer]);
+            }
+        }
+        swapValues(leftPointer, right);
+        return  leftPointer;
     }
 }
