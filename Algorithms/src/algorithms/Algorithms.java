@@ -7,24 +7,25 @@ public class Algorithms {
     int[] array = new int[50];
     int arraySize = 5;
     Scanner scan = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         Algorithms algos = new Algorithms();
         algos.fillArray();
-        algos.bubbleSort();
+        algos.shellSort();
         algos.printArray();
     }
 
     public void fillArray() {
         for (int i = 0; i < arraySize; i++) {
-            array[i] = scan.nextInt();
+            array[i] = (int) (Math.random() * 30) + 5;
         }
     }
 
     public void printArray() {
         for (int i = 0; i < arraySize; i++) {
             //System.out.print(" | " + i + " | ");
-            System.out.print(array[i] + ", ");
+            System.out.print(array[i] + " ");
 
         }
         System.out.println();
@@ -122,6 +123,7 @@ public class Algorithms {
             swapValues(i, min);
         }
     }
+
     public void insertionSort() {
         for (int i = 1; i < arraySize; i++) {
             int j = i;
@@ -133,6 +135,26 @@ public class Algorithms {
             array[j] = toInsert;
             System.out.println();
             printArray();
+        }
+    }
+
+    public void shellSort() {
+        int inner, outer, temp;
+        int interval = 1;
+        while (interval <= arraySize / 3) {
+            interval = interval * 3 + 1;
+        }
+        while (interval > 0) {
+            for (outer = interval; outer < arraySize; outer++) {
+                temp = array[outer];
+                inner = outer;
+                while (inner > interval - 1 && array[inner - interval] >= temp) {
+                    array[inner] = array[inner - interval];
+                    inner -= interval;
+                }
+                array[inner] = temp;
+            }
+            interval = (interval - 1) / 3;
         }
     }
 }

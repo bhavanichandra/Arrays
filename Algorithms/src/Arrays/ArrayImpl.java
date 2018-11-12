@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaexample2;
+package Arrays;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Bhavani_Chandra
  */
-public class JavaExample2 {
+public class ArrayImpl {
 
     /**
      * @param args the command line arguments
