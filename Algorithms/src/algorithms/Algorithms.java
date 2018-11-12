@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Algorithms {
 
     int[] array = new int[50];
-    int arraySize = 5;
     Scanner scan = new Scanner(System.in);
+    int arraySize = scan.nextInt();
 
     public static void main(String[] args) {
 
